@@ -1,11 +1,7 @@
-@import '../libs/vars';
-@import '../libs/functions';
-@import '../libs/mixins';
-
 ///
-/// Retrospect by TEMPLATED
-/// templated.co @templatedco
-/// Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+/// Future Imperfect by HTML5 UP
+/// html5up.net | @ajlkn
+/// Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 ///
 
 /* List */
@@ -33,9 +29,8 @@
 			list-style: none;
 			padding-left: 0;
 
-			> li {
-				border-top-style: solid;
-				border-top-width: _size(border-width);
+			li {
+				border-top: solid 1px _palette(border);
 				padding: 0.5em 0;
 
 				&:first-child {
@@ -50,7 +45,7 @@
 			list-style: none;
 			padding-left: 0;
 
-			> li {
+			li {
 				display: inline-block;
 				padding: 0 1em 0 0;
 
@@ -58,9 +53,12 @@
 					padding-right: 0;
 				}
 
-				.icon {
-					&:before {
-						font-size: 2em;
+				> * {
+					@include icon;
+					border: 0;
+
+					.label {
+						display: none;
 					}
 				}
 			}
@@ -71,9 +69,9 @@
 			list-style: none;
 			padding-left: 0;
 
-			> li {
+			li {
 				display: inline-block;
-				padding: 0 (_size(element-margin) * 0.5) 0 0;
+				padding: 0 (_size(element-margin) * 0.75) 0 0;
 				vertical-align: middle;
 
 				&:last-child {
@@ -81,16 +79,48 @@
 				}
 			}
 
+			&.pagination {
+				.next {
+					@include icon('', after);
+
+					&:after {
+						content: '\f054';
+					}
+				}
+
+				.previous {
+					@include icon('', before);
+
+					&:before {
+						content: '\f053';
+					}
+				}
+
+				@include breakpoint(large) {
+					text-align: center;
+
+					.next, .previous {
+						min-width: 20em;
+					}
+				}
+
+				@include breakpoint(small) {
+					.next, .previous {
+						min-width: 18em;
+					}
+				}
+			}
+
 			&.small {
-				> li {
-					padding: 0 (_size(element-margin) * 0.25) 0 0;
+				li {
+					padding: 0 (_size(element-margin) * 0.5) 0 0;
 				}
 			}
 
 			&.vertical {
-				> li {
+				li {
 					display: block;
-					padding: (_size(element-margin) * 0.5) 0 0 0;
+					padding: (_size(element-margin) * 0.75) 0 0 0;
 
 					&:first-child {
 						padding-top: 0;
@@ -102,8 +132,8 @@
 				}
 
 				&.small {
-					> li {
-						padding: (_size(element-margin) * 0.25) 0 0 0;
+					li {
+						padding: (_size(element-margin) * 0.5) 0 0 0;
 
 						&:first-child {
 							padding-top: 0;
@@ -119,7 +149,7 @@
 				table-layout: fixed;
 				width: calc(100% + #{(_size(element-margin) * 0.5)});
 
-				> li {
+				li {
 					display: table-cell;
 					padding: 0 0 0 (_size(element-margin) * 0.5);
 
@@ -132,7 +162,7 @@
 					margin-left: (_size(element-margin) * -0.25);
 					width: calc(100% + #{(_size(element-margin) * 0.25)});
 
-					> li {
+					li {
 						padding: 0 0 0 (_size(element-margin) * 0.25);
 					}
 				}
@@ -141,7 +171,7 @@
 			@include breakpoint(xsmall) {
 				margin: 0 0 _size(element-margin) 0;
 
-				> li {
+				li {
 					padding: (_size(element-margin) * 0.5) 0 0 0;
 					display: block;
 					text-align: center;
@@ -157,14 +187,13 @@
 
 						&.icon {
 							&:before {
-								margin-left: -2em;
 							}
 						}
 					}
 				}
 
 				&.small {
-					> li {
+					li {
 						padding: (_size(element-margin) * 0.25) 0 0 0;
 
 						&:first-child {
@@ -174,28 +203,76 @@
 				}
 			}
 		}
+
+		&.posts {
+			list-style: none;
+			padding: 0;
+
+			li {
+				border-top: dotted 1px _palette(border);
+				margin: (_size(element-margin) * 0.75) 0 0 0;
+				padding: (_size(element-margin) * 0.75) 0 0 0;
+
+				&:first-child {
+					border-top: 0;
+					margin-top: 0;
+					padding-top: 0;
+				}
+			}
+
+			article {
+				@include vendor('display', 'flex');
+				@include vendor('align-items', 'flex-start');
+				@include vendor('flex-direction', 'row-reverse');
+
+				.image {
+					display: block;
+					margin-right: 1.5em;
+					min-width: 4em;
+					width: 4em;
+
+					img {
+						width: 100%;
+					}
+				}
+
+				header {
+					@include vendor('flex-grow', '1');
+					-ms-flex: 1;
+
+					h3 {
+						font-size: 0.7em;
+						margin-top: 0.125em;
+					}
+
+					.published {
+						display: block;
+						font-family: _font(family-heading);
+						font-size: 0.6em;
+						font-weight: _font(weight-heading);
+						letter-spacing: _font(kerning-heading);
+						margin: -0.625em 0 (_size(element-margin) * 0.85) 0;
+						text-transform: uppercase;
+					}
+
+					> :last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
 	}
 
 	dl {
 		margin: 0 0 _size(element-margin) 0;
 
-		> dt {
+		dt {
 			display: block;
 			font-weight: _font(weight-bold);
 			margin: 0 0 (_size(element-margin) * 0.5) 0;
 		}
 
-		> dd {
+		dd {
 			margin-left: _size(element-margin);
 		}
 	}
-
-	@mixin color-list($p: null) {
-		ul {
-			&.alt > li {
-				border-top-color: _palette($p, border);
-			}
-		}
-	}
-
-	@include color-list;

@@ -1,19 +1,13 @@
-@import '../libs/vars';
-@import '../libs/functions';
-@import '../libs/mixins';
-
 ///
-/// Retrospect by TEMPLATED
-/// templated.co @templatedco
-/// Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+/// Future Imperfect by HTML5 UP
+/// html5up.net | @ajlkn
+/// Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 ///
 
 /* Box */
 
 	.box {
-		border-radius: _size(border-radius);
-		border-style: solid;
-		border-width: _size(border-width);
+		border: solid 1px _palette(border);
 		margin-bottom: _size(element-margin);
 		padding: 1.5em;
 
@@ -29,12 +23,3 @@
 			padding: 0;
 		}
 	}
-
-
-	@mixin color-box($p: null) {
-		.box {
-			border-color: _palette($p, border);
-		}
-	}
-
-	@include color-box;

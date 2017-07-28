@@ -1,24 +1,26 @@
 /*
-	Retrospect by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
 (function($) {
 
-	skel
-		.breakpoints({
-			xlarge: '(max-width: 1680px)',
-			large: '(max-width: 1280px)',
-			medium: '(max-width: 980px)',
-			small: '(max-width: 736px)',
-			xsmall: '(max-width: 480px)'
-		});
+	skel.breakpoints({
+		xlarge:	'(max-width: 1680px)',
+		large:	'(max-width: 1280px)',
+		medium:	'(max-width: 980px)',
+		small:	'(max-width: 736px)',
+		xsmall:	'(max-width: 480px)'
+	});
 
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body');
+			$body = $('body'),
+			$menu = $('#menu'),
+			$sidebar = $('#sidebar'),
+			$main = $('#main');
 
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
@@ -40,9 +42,12 @@
 				);
 			});
 
-		// Nav.
-			$('#nav')
-				.append('<a href="#nav" class="close"></a>')
+		// IE<=9: Reverse order of main and sidebar.
+			if (skel.vars.IEVersion <= 9)
+				$main.insertAfter($sidebar);
+
+		// Menu.
+			$menu
 				.appendTo($body)
 				.panel({
 					delay: 500,
@@ -50,8 +55,60 @@
 					hideOnSwipe: true,
 					resetScroll: true,
 					resetForms: true,
-					side: 'right'
+					side: 'right',
+					target: $body,
+					visibleClass: 'is-menu-visible'
 				});
+
+		// Search (header).
+			var $search = $('#search'),
+				$search_input = $search.find('input');
+
+			$body
+				.on('click', '[href="#search"]', function(event) {
+
+					event.preventDefault();
+
+					// Not visible?
+						if (!$search.hasClass('visible')) {
+
+							// Reset form.
+								$search[0].reset();
+
+							// Show.
+								$search.addClass('visible');
+
+							// Focus input.
+								$search_input.focus();
+
+						}
+
+				});
+
+			$search_input
+				.on('keydown', function(event) {
+
+					if (event.keyCode == 27)
+						$search_input.blur();
+
+				})
+				.on('blur', function() {
+					window.setTimeout(function() {
+						$search.removeClass('visible');
+					}, 100);
+				});
+
+		// Intro.
+			var $intro = $('#intro');
+
+			// Move to main on <=large, back to sidebar on >large.
+				skel
+					.on('+large', function() {
+						$intro.prependTo($main);
+					})
+					.on('-large', function() {
+						$intro.prependTo($sidebar);
+					});
 
 	});
 
