@@ -2486,7 +2486,7 @@
 		-ms-flex-direction: column-reverse;
 		flex-direction: column-reverse;
 		background: #ffffff;
-		border: solid 1px #F3AA8C;
+		border: solid 1px grey;
 		margin: 0 0 2em 0;
 	}
 
