@@ -1512,6 +1512,11 @@
 		margin: 0 0 2em 0;
 	}
 
+p.highlight {
+    background-color: white;
+    display: inline-block;
+}
+
 	h1, h2, h3, h4, h5, h6 {
 		color: #3c3b3b;
 		font-family: "Raleway", Helvetica, sans-serif;
@@ -1530,6 +1535,8 @@
 	h2 {
 		font-size: 1.1em;
 	}
+
+
 
 .coral {
     color: coral;
@@ -2201,6 +2208,9 @@
 					border-top: 0;
 					padding-top: 0;
 				}
+
+
+
 
 		ul.icons {
 			cursor: default;
