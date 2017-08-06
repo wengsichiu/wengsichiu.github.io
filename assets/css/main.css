@@ -3058,7 +3058,8 @@ p.highlight {
 					font-weight: 400;
 					letter-spacing: 0.25em;
 					text-transform: uppercase;
-				}
+        }
+
 
 		#header .main {
 			height: inherit;
