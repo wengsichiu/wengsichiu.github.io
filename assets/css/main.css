@@ -3114,7 +3114,53 @@ p.highlight {
 							text-indent: 0;
 							top: 0;
 							width: inherit;
-						}
+				}
+
+
+li a .dropbtn {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: none;
+    color: black;
+}
+
+li .dropdown {
+    display: inline-block;
+    color: black;
+
+}
+
+.dropdown-content {
+    border: 1px solid white;
+    display: none;
+    position: absolute;
+    background-color: salmon;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+
+}
+
 
 		#header form {
 			margin: 0;
